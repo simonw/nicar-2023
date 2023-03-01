@@ -1,0 +1,31 @@
+title: NICAR 2023
+source: Schedule
+source_url: https://schedules.ire.org/nicar-2023/
+about: simonw/nicar-2023
+about_url: https://github.com/simonw/nicar-2023
+databases:
+  nicar2023:
+    queries:
+      calendar:
+        sql: |
+          with speakers as (
+            select event_id, group_concat(name || ', ' || label, '
+          ') as speakers
+            from poi_sessions join guidebook_poi on poi_sessions.poi_id = guidebook_poi.id
+            group by event_id
+          )
+          select
+            'nicar-2023/' || guidebook_event.id as event_uid,
+            guidebook_event.name as event_name,
+            html_unescape(html_strip_tags(guidebook_event.description)) || '
+
+          ' || coalesce(guidebook_location.name, '') || '
+
+          ' || coalesce(speakers, '') as event_description,
+            'America/Chicago' as event_tzid,
+            startTime as event_dtstart,
+            endTime as event_dtend
+          from
+            guidebook_event
+            left join guidebook_location on guidebook_event.locations = guidebook_location.id
+            left join speakers on speakers.event_id = guidebook_event.id

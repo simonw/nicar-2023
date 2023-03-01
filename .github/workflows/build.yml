@@ -1,0 +1,50 @@
+name: Fetch data, build and deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      force_fetch:
+        type: boolean
+        description: 'Re-fetch data'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+        cache: "pip"
+    - name: Install Python dependencies
+      run: |
+        python -m pip install -r requirements.txt
+    - name: Fetch data conditionally
+      env:
+        FORCE_FETCH: ${{ github.event.inputs.force_fetch }}
+      run: |-
+        # Fetch if data.json is missing OR if FORCE_FETCH is set
+        if [ ! -f data.json ] || [ "$FORCE_FETCH" = "true" ]; then
+          ./fetch.sh
+        fi
+    - name: Commit and push if data.json changed
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
+    - name: Build database
+      run: |-
+        python build_db.py nicar2023.db data.json
+    - name: Deploy Datasette using Vercel
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      run: |-
+        ./deploy.sh
