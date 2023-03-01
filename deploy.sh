@@ -10,4 +10,5 @@ datasette publish vercel \
   --install datasette-json-html \
   --install datasette-ics \
   --install datasette-simple-html \
-  --install datasette-copyable
+  --install datasette-copyable \
+  --install datasette-pretty-json
