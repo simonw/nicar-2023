@@ -3,10 +3,14 @@ source: Schedule
 source_url: https://schedules.ire.org/nicar-2023/
 about: simonw/nicar-2023
 about_url: https://github.com/simonw/nicar-2023
+description_html: |-
+  <p>Subscribe to the schedule in your calendar using:</p>
+  <p><code>https://nicar-2023.vercel.app/nicar2023/calendar.ics</code></p>
 databases:
   nicar2023:
     queries:
       calendar:
+        title: NICAR 2023
         sql: |
           with speakers as (
             select event_id, group_concat(name || ', ' || label, '
