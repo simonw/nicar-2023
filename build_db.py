@@ -26,6 +26,7 @@ def build_tables(data, db):
     db["guidebook_event_scheduleTrack"].add_foreign_key(
         "schedule_id", "guidebook_schedule", "id"
     )
+    db["guidebook_poi"].add_foreign_key("categories", "guidebook_poicategory", "id")
     db["guidebook_poi_location"].add_foreign_key("poi_id", "guidebook_poi", "id")
     db["guidebook_poi_location"].add_foreign_key(
         "location_id", "guidebook_location", "id"
