@@ -18,5 +18,5 @@ https://calendar.google.com/calendar/u/0/r/settings/addbyurl
 
 Come to **[Datasette: An ecosystem of tools for exploring data and collaborating on data projects](https://guidebook.com/g/#/guides/nicar23/schedule/sessions/28625732)** at 3:30-4:30pm on Saturday March 4th in Sylvan Park, Meeting Space Level 2.
 
-[Simon Willison](https://simonwillison.net/) is keen to have conversations about the project! Find him on the News Nerdery or Lonely Coders' Club Slacks, or reach out [on Mastodon](https://fedi.simonwillison.net/@simon) or [on Twitter](https://twitter.com/simonw).
+[Simon Willison](https://simonwillison.net/) is at NICAR all week and is keen to have conversations about the project! Find him on the News Nerdery or Lonely Coders' Club Slacks, or reach out [on Mastodon](https://fedi.simonwillison.net/@simon) or [on Twitter](https://twitter.com/simonw).
 
