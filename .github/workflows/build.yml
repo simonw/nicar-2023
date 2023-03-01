@@ -10,6 +10,9 @@ on:
         type: boolean
         description: 'Re-fetch data'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
