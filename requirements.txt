@@ -1,2 +1,4 @@
 sqlite-utils
 httpx
+datasette
+datasette-publish-vercel
