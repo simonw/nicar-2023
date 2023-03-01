@@ -9,6 +9,7 @@ def build_tables(data, db):
         db[key].insert_all(data[key], pk="id")
 
     db["guidebook_event"].transform(types={"locations": int, "tracks": int})
+    db["guidebook_poi"].transform(types={"categories": int})
     # Foreign keys
     db["guidebook_event"].add_foreign_key("locations", "guidebook_location", "id")
     db["guidebook_event"].add_foreign_key("tracks", "guidebook_schedule", "id")
